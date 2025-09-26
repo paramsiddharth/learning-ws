@@ -72,7 +72,11 @@ wsServer.on('connection', socket => {
 
 // TODO: Implement the broadcast pattern
 function broadcast(data, socketToOmit) {
-  
+  wsServer.clients.forEach(connectedClient => {
+    if (connectedClient.readyState === WebSocket.OPEN && connectedClient != socketToOmit) {
+      connectedClient.send(data);
+    }
+  });
 }
 
 /**
