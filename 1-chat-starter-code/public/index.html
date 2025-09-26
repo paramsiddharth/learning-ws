@@ -31,6 +31,7 @@
      * @type {WebSocket}
      */
     let wsClient; 
+    const username = prompt('Enter a username:');
     
     ////////////////////////////////////////////////
     //////////////// DOM SETUP /////////////////////
@@ -80,7 +81,8 @@
       wsClient.onopen = event => {
         console.log('Connection to the WebSocket server established! :)');
         const data = {
-          type: 'NEW_USER'
+          type: CLIENT.MESSAGE.NEW_USER,
+          payload: { username }
         };
         wsClient.send(JSON.stringify(data));
       };
@@ -92,16 +94,15 @@
         const { data } = msgEvent; 
         const { type, payload } = JSON.parse(data);
         switch (type) {
-          case 'NEW_USER':
-            showMessageReceived('<em>A new user has joined!</em>');
+          case SERVER.BROADCAST.NEW_USER_WITH_TIME:
+            showMessageReceived(`<em>${payload.username} has joined at ${payload.time}!</em>`);
             break;
-          case 'NEW_MESSAGE':
-            showMessageReceived(payload.message);
+          case CLIENT.MESSAGE.NEW_MESSAGE:
+            showMessageReceived(`<strong>[${payload.username}]</strong> ${payload.message}`);
             break;
           default:
             break;
         }
-        // showMessageReceived(message);
       }
 
 
@@ -134,8 +135,8 @@
       // Exercise 6: Send the message from the messageBox to the server
       // Exercise 9: Send the message in a custom message object with .type and .payload properties
       const data = {
-        type: 'NEW_MESSAGE',
-        payload: { message }
+        type: CLIENT.MESSAGE.NEW_MESSAGE,
+        payload: { message, username }
       };
       wsClient.send(JSON.stringify(data));
     }
