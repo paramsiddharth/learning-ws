@@ -27,6 +27,9 @@
   
     // This variable will hold the WebSocket client connection. 
     // Initialize in the init() function
+    /**
+     * @type {WebSocket}
+     */
     let wsClient; 
     
     ////////////////////////////////////////////////
@@ -74,7 +77,7 @@
 
       // TODO:
       // Exercise 5: Respond to connections by defining the .onopen event handler.
-      wsClient.onopen = (event) => {
+      wsClient.onopen = event => {
         console.log('Connection to the WebSocket server established! :)');
       };
 
@@ -112,6 +115,7 @@
       // TODO: 
       // Exercise 6: Send the message from the messageBox to the server
       // Exercise 9: Send the message in a custom message object with .type and .payload properties
+      wsClient.send(message);
     }
 
     ////////////////////////////////////////////////
