@@ -84,7 +84,10 @@
       // TODO:
       // Exercise 7: Respond to messages from the servery by defining the .onmessage event handler
       // Exercise 9: Parse custom message types, formatting each message based on the type.
-
+      wsClient.onmessage = msgEvent => {
+        const { data: message } = msgEvent; 
+        showMessageReceived(message);
+      }
 
 
       /* Note:

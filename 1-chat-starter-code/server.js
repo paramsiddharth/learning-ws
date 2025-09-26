@@ -52,8 +52,11 @@ const wsServer = new WebSocket.Server({ server });
 wsServer.on('connection', socket => {
   console.log('A new client has connected to the server! :)');
 
+  socket.send('Welcome to the server!');
+
   socket.on('message', data => {
     console.log(data);
+    socket.send(`Message received: ${data}`);
   });
 });
 
