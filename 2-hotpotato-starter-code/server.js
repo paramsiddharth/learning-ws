@@ -72,12 +72,21 @@ wsServer.on('connection', socket => {
 
 // TODO: Implement the broadcast pattern
 
-
+/**
+ * 
+ * @param {WebSocket} socket 
+ */
 function handleNewUser(socket) {
   // Until there are 4 players in the game....
   if (nextPlayerIndex < 4) {
     // TODO: Send PLAYER_ASSIGNMENT to the socket with a clientPlayerIndex
-    
+    const data = {
+      type: SERVER.MESSAGE.PLAYER_ASSIGNMENT,
+      payload: {
+        clientPlayerIndex: nextPlayerIndex
+      }
+    };
+    socket.send(JSON.stringify(data));
     
     // Then, increment the number of players in the game
     nextPlayerIndex++;
@@ -96,7 +105,10 @@ function handleNewUser(socket) {
   // If 4 players are already in the game...
   else {
     // TODO: Send GAME_FULL to the socket
-    
+    const data = {
+      type: SERVER.MESSAGE.GAME_FULL
+    };
+    socket.send(JSON.stringify(data));
 
   }
 }
