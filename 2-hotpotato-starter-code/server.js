@@ -28,7 +28,12 @@ const server = http.createServer((req, res) => {
   let contentType = 'text/html';
   if (extname === '.js') contentType = 'text/javascript';
   else if (extname === '.css') contentType = 'text/css';
-
+  
+  // err if the file doesn't exist
+  if (!fs.existsSync(__dirname + filePath)) {
+    return res.writeHead(404).end();
+  }
+  
   // pipe the proper file to the res object
   res.writeHead(200, { 'Content-Type': contentType });
   fs.createReadStream(`${__dirname}/${filePath}`, 'utf8').pipe(res);
