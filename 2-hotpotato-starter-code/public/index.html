@@ -88,6 +88,18 @@
       wsClient.onmessage = msgEvent => {
         const { data } = msgEvent;
         const { type, payload } = JSON.parse(data);
+        switch (type) {
+          case SERVER.MESSAGE.PLAYER_ASSIGNMENT: {
+            const { clientPlayerIndex } = payload;
+            setPlayerIndex(clientPlayerIndex);
+            break;
+          }
+          case SERVER.MESSAGE.GAME_FULL:
+            updateDisplay('House full! Try again later.', 'red');
+            break;
+          default:
+            break;
+        }
       };
       
 
