@@ -57,7 +57,7 @@ wsServer.on('connection', socket => {
     const { type, payload } = JSON.parse(data);
     switch (type) {
       case CLIENT.MESSAGE.NEW_USER:
-        console.log('Received a new user message.');
+        handleNewUser(socket);
         break;
       default:
         console.error(`Unhandled message type: ${type}`);
