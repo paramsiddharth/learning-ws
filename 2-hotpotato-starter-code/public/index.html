@@ -128,7 +128,11 @@
       potatoHolderIndex = newPotatoHolderIndex;
       
       // TODO: Send the server a 'PASS_POTATO' message with the newPotatoHolderIndex
-      
+      const data = {
+        type: CLIENT.MESSAGE.PASS_POTATO,
+        payload: { newPotatoHolderIndex }
+      };
+      wsClient.send(JSON.stringify(data));
     }
 
     ////////////////////////////////////////////////
