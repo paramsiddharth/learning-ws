@@ -54,7 +54,15 @@ wsServer.on('connection', socket => {
   console.log('A new client has joined the server!');
 
   socket.on('message', data => {
-    console.log(data.toString());
+    const { type, payload } = JSON.parse(data);
+    switch (type) {
+      case CLIENT.MESSAGE.NEW_USER:
+        console.log('Received a new user message.');
+        break;
+      default:
+        console.error(`Unhandled message type: ${type}`);
+        break;
+    }
   });
 });
 
