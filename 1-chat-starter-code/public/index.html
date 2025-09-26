@@ -74,7 +74,9 @@
 
       // TODO:
       // Exercise 5: Respond to connections by defining the .onopen event handler.
-
+      wsClient.onopen = (event) => {
+        console.log('Connection to the WebSocket server established! :)');
+      };
 
       // TODO:
       // Exercise 7: Respond to messages from the servery by defining the .onmessage event handler
