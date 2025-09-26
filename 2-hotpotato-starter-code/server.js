@@ -44,7 +44,7 @@ const server = http.createServer((req, res) => {
 ///////////////////////////////////////////////
 
 // TODO: Create the WebSocket Server (ws) using the HTTP server
-
+const wsServer = new WebSocket.Server({ server });
 
 // TODO: Define the websocket server 'connection' handler
 // TODO: Define the socket 'message' handler
