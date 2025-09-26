@@ -50,7 +50,9 @@ const wsServer = new WebSocket.Server({ server });
 // TODO: Define the socket 'message' handler
   // 'NEW_USER' => handleNewUser(socket)
   // 'PASS_POTATO' => passThePotatoTo(newPotatoHolderIndex)
-
+wsServer.on('connection', socket => {
+  console.log('A new client has joined the server!');
+});
 
 ///////////////////////////////////////////////
 ////////////// HELPER FUNCTIONS ///////////////
