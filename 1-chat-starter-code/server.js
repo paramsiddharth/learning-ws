@@ -56,8 +56,6 @@ wsServer.on('connection', socket => {
   broadcast('A new user has joined!', socket);
 
   socket.on('message', data => {
-    console.log(data);
-
     const { type, payload } = JSON.parse(data);
     switch (type) {
       case CLIENT.MESSAGE.NEW_USER:
