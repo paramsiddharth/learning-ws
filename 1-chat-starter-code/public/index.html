@@ -94,12 +94,16 @@
         const { data } = msgEvent; 
         const { type, payload } = JSON.parse(data);
         switch (type) {
-          case SERVER.BROADCAST.NEW_USER_WITH_TIME:
-            showMessageReceived(`<em>${payload.username} has joined at ${payload.time}!</em>`);
+          case SERVER.BROADCAST.NEW_USER_WITH_TIME: {
+            const { username, time } = payload;
+            showMessageReceived(`<em>${username} has joined at ${time}!</em>`);
             break;
-          case CLIENT.MESSAGE.NEW_MESSAGE:
-            showMessageReceived(`<strong>[${payload.username}]</strong> ${payload.message}`);
+          }
+          case CLIENT.MESSAGE.NEW_MESSAGE: {
+            const { username, message } = payload;
+            showMessageReceived(`<strong>[${username}]</strong> ${message}`);
             break;
+          }
           default:
             break;
         }
