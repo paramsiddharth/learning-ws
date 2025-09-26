@@ -59,6 +59,11 @@ wsServer.on('connection', socket => {
       case CLIENT.MESSAGE.NEW_USER:
         handleNewUser(socket);
         break;
+      case CLIENT.MESSAGE.PASS_POTATO: {
+        const { newPotatoHolderIndex } = payload;
+        passThePotatoTo(newPotatoHolderIndex);
+        break;
+      }
       default:
         console.error(`Unhandled message type: ${type}`);
         break;
