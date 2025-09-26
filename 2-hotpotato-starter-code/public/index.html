@@ -97,6 +97,11 @@
           case SERVER.MESSAGE.GAME_FULL:
             updateDisplay('House full! Try again later.', 'red');
             break;
+          case SERVER.BROADCAST.NEW_POTATO_HOLDER: {
+            const { newPotatoHolderIndex } = payload;
+            updateCurrentPotatoHolder(newPotatoHolderIndex);
+            break;
+          }
           default:
             break;
         }
