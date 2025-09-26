@@ -85,6 +85,10 @@
           // 'COUNTDOWN' => countDown(clockValue)
           // 'NEW_POTATO_HOLDER' => updateCurrentPotatoHolder(newPotatoHolderIndex)
           // 'GAME_OVER' => endGame()
+      wsClient.onmessage = msgEvent => {
+        const { data } = msgEvent;
+        const { type, payload } = JSON.parse(data);
+      };
       
 
       // .onclose is executed when the socket connection is closed
