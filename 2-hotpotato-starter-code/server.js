@@ -71,6 +71,9 @@ wsServer.on('connection', socket => {
 ///////////////////////////////////////////////
 
 // TODO: Implement the broadcast pattern
+function broadcast(data, socketToOmit) {
+  
+}
 
 /**
  * 
