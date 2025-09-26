@@ -26,6 +26,9 @@
     ////////////// VARIABLES ///////////////////////
     ////////////////////////////////////////////////
     
+    /**
+     * @type {WebSocket}
+     */
     let wsClient = null;            // The client-side WebSocket connection variable: new WebSocket() 
     let clientPlayerIndex = null;   // The index value of the client: 0 | 1 | 2 | 3
     let potatoHolderIndex = null;   // The index value of the current holder of the potato: 0 | 1 | 2 | 3
@@ -68,6 +71,11 @@
         // TODO: Send the server a 'NEW_USER' message
       wsClient.onopen = event => {
         console.log('Connnected to the WebSocket server!');
+
+        const data = {
+          type: CLIENT.MESSAGE.NEW_USER
+        };
+        wsClient.send(JSON.stringify(data));
       };
 
       // TODO: Define the .onmessage() handler
