@@ -107,6 +107,9 @@
             countDown(clockValue);
             break;
           }
+          case SERVER.BROADCAST.GAME_OVER:
+            endGame();
+            break;
           default:
             break;
         }
@@ -190,9 +193,9 @@
 
     function endGame() {
       if (potatoHolderIndex === clientPlayerIndex) {
-        updateDisplay('You Lose', '#ff0000b5');
-      } else {
         updateDisplay('You Win!', '#63fe34a1');
+      } else {
+        updateDisplay('You Lose', '#ff0000b5');
       }
     }
 
