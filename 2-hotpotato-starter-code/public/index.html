@@ -102,6 +102,11 @@
             updateCurrentPotatoHolder(newPotatoHolderIndex);
             break;
           }
+          case SERVER.BROADCAST.COUNTDOWN: {
+            const { clockValue } = payload;
+            countDown(clockValue);
+            break;
+          }
           default:
             break;
         }
