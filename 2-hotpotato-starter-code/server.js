@@ -159,7 +159,10 @@ function startTimer() {
       nextPlayerIndex = 0; // reset the players index
       
       // TODO: Broadcast 'GAME_OVER'
-   
+      const data = {
+        type: SERVER.BROADCAST.GAME_OVER
+      };
+      broadcast(JSON.stringify(data));
     }
   }, 1000);
 }
